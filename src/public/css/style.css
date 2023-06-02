@@ -6,3 +6,64 @@
   --yellow: #70ff71;
 }
 
+.calendar-format{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.header-weeks{
+  font-size: 20px;
+}
+
+.selected{
+  background-color: #111111;
+}
+
+.calendar-format_item{
+  padding: 3px 5px;
+  width: 150px;
+  height: 100px;
+  text-align: end;
+  border: solid var(--black) 2px;
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.calendar-format_item:hover{
+  border: solid var(--blue) 2px;
+} 
+.calendar-format_item:foc{
+  border: solid var(--yellow) 2px;
+}
+
+/*Ubicaciones*/
+#su{
+  grid-column-start: 1;
+  border: solid var(--red) 2px;
+  color: var(--red);
+}
+#mo{
+  grid-column-start: 2;
+}
+#tu{
+  grid-column-start: 3;
+}
+#we{
+  grid-column-start: 4;
+}
+#th{
+  grid-column-start: 5;
+}
+#fr{
+  grid-column-start: 6;
+}
+#sa{
+  grid-column-start: 7;
+}

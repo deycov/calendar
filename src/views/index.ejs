@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/style.css">
   <title>Calendario 2023</title>
 </head>
-<body>
-  <h1> Calendario 2023 </h1>
 
-  <ul id="week" class="calendar-format">
-    <li>Domingo</li>
-    <li>Lunes</li>
-    <li>Martes</li>
-    <li>Miercoles</li>
-    <li>Jueves</li>
-    <li>Viernes</li>
-    <li>Sábado</li>
-  </ul>
+<body>
+  <h1 class="m-auto t-center"> Calendario 2023 </h1>
+
+  <section class="container">
+    <div class="row">
+      <div class="col-md">
+
+        <h2>
+          <%= month %>
+        </h2>
+
+        <ol id="week" class="calendar-format">
+          <li id="su" class="header-weeks">Domingo</li>
+          <li id="mo" class="header-weeks">Lunes</li>
+          <li id="tu" class="header-weeks">Martes</li>
+          <li id="we" class="header-weeks">Miercoles</li>
+          <li id="th" class="header-weeks">Jueves</li>
+          <li id="fr" class="header-weeks">Viernes</li>
+          <li id="sa" class="header-weeks">Sábado</li>
+
+          <% date.forEach((element,index)=> { %>    
+            <li id="<%= element.week %>" class="calendar-format_item" data-bs-toggle="modal"
+              data-bs-target="#cellModal-<%= element.day %>">  
+              <%= element.day;%>
+             </li>
+             
+          <%}) %>
+        </ol>
+      </div>
+    </div>
+  </section>
+  
+
+
   <script src="/js/scripts.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
