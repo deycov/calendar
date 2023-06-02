@@ -12,85 +12,71 @@
 </head>
 
 <body>
-  <h2 class="m-auto t-center"> Sus Notas </h2>
-
+  <h2 class="m-auto text-center"> Sus Notas </h2>
+  <div class="d-flex justify-content-center">
+    <a href="/v1/calendar" class="btn btn-secondary "> Volver </a>
+  </div>
+  
 
   <section class="container">
     <div class="row">
-      <div class="col-md-6 m-auto">
-        <h3> Nota día <%= note.day %>
-        </h3>
+      <div class="col-sm-12 col-md-6">
+        <h3  class="title-note"> Nota día <%= note.day %></h3>
         <% if(data) { %>
-          <form action="/v1/calendar/update/<%= note.day %>/<%= data.id %>" method="post">
-            <div class="mb-3">
-              <input type="text" name="title" placeholder="<%= data.title %>" class="form-group">
-            </div>
-            <div class="mb-3">
-              <textarea name="description" class="form-group"><%= data.description %></textarea>
-            </div>
-            <button class="btn btn-success"> Editar nota </button>
-          </form>
+          <div class="form">
+            <form action="/v1/calendar/update/<%= note.day %>/<%= data.id %>" method="post">
+              <div class="form-control mb-3">
+                <label class="form-label">Título</label>
+                <input type="text" name="title" placeholder="<%= data.title %>" class="form-control">
+              </div>
+              <div class=" form-control mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea name="description" class="form-control" cols="30" rows="10" placeholder="<%= data.description %>"></textarea>
+              </div>
+              <button class="m-auto btn btn-success"> Editar </button>
+            </form>
+          </div>
+          
         <% }else{ %>
-          <form action="/v1/calendar" method="post">
-            <div class="mb-3">
+          <div class="form">
+            <form action="/v1/calendar" method="post">
               <input type="hidden" name="day" value="<%= note.day %>">
-            </div>
-            <div class="mb-3">
-              <input type="text" name="title" placeholder="" class="form-group">
-            </div>
-            <div class="mb-3">
-              <textarea name="description" class="form-group"></textarea>
-            </div>
-            <button class="btn btn-primary"> Guardar nota </button>
-          </form>
+              
+              <div class=" form-control mb-3">
+                <label class="form-label">Título</label>
+                <input type="text" name="title" placeholder="Titulo de la nota" class="form-control">
+              </div>
+              <div class=" form-control mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea name="description" class="form-control" cols="30" rows="10" placeholder="Descripción de la nota"></textarea>
+              </div>
+              <button class="btn btn-primary"> Guardar nota </button>
+            </form>
+          </div> 
         <% } %>
       </div>
-
-      <% if(info) { %>
-        <div class="col-md-6 m-auto">
-          <h3> Notas agregadas </h3>
-          <% info.forEach(el=>{ %>
-            <div class="container-fluid">
-              <h4>
-                <%= el.title %>
-              </h4>
-              <p>
-                <%= el.description %>
-                <%= el.id %>
-              </p>
-            </div>
-            <a class="btn btn-primary" href="/v1/calendar/edit/<%= note.day %>/<%= el.id %>"> Editar </a>
-            <a class="btn btn-warning" href="/v1/calendar/delete/<%= note.day %>/<%= el.id %>"> Eliminar </a>
-            <% }) %>
-        </div>
-        <% } %>
-
-          <% if(data) { %>
-            <div class="col-md-6 m-auto">
-              <h3> Modifica la nota </h3>
-
-              <div class="container-fluid">
-                <h4>
-                  <%= data.title %>
-                </h4>
-                <p>
-                  <%= data.description %>
-                </p>
+      <div class="col-sm-12 col-md-6">
+        <% if(info[0]) { %>
+          <div class="row">
+            <h3> Notas agregadas </h3>
+            <% info.forEach(el=>{ %>
+            <div class="col-sm-7 m-auto mb-3">
+              <div class="card" style="width: 300px;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= el.title %></h5>
+                  <p class="card-text"><%= el.description %></p>
+                  <a class="btn btn-primary" href="/v1/calendar/edit/<%= note.day %>/<%= el.id %>"> Editar </a>
+                  <a class="btn btn-warning" href="/v1/calendar/delete/<%= note.day %>/<%= el.id %>"> Eliminar </a>
+                </div>
               </div>
-              <a class="btn btn-primary" href="/v1/calendar/edit"> editar </a>
-
             </div>
-            <% } %>
-
+            <% }) %>
+        <% }else{ %>
+          <h3 class="alert text-center"> Registra una nota! </h3>
+        <% } %>
+      </div>
     </div>
   </section>
-
-
-
-
-
-
-
   <script src="/js/scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

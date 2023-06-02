@@ -12,34 +12,60 @@
 </head>
 
 <body>
-  <h1 class="m-auto t-center"> Calendario 2023 </h1>
+  <h1 class="m-auto text-center"> Calendario 2023 </h1>
 
-  <section class="container">
+  <section class="container-fluid">
     <div class="row">
-      <div class="col-md">
+      <div class="col-lg-8 col-md-8 col-sm-12">
+        <a href=""></a>
 
-        <h2>
+        <h2 class="title text-center">
           <%= month %>
         </h2>
 
         <ol id="week" class="calendar-format">
-          <li id="su" class="header-weeks">Domingo</li>
-          <li id="mo" class="header-weeks">Lunes</li>
-          <li id="tu" class="header-weeks">Martes</li>
-          <li id="we" class="header-weeks">Miercoles</li>
-          <li id="th" class="header-weeks">Jueves</li>
-          <li id="fr" class="header-weeks">Viernes</li>
-          <li id="sa" class="header-weeks">Sábado</li>
+          <li id="su" class="header-weeks">Dom.</li>
+          <li id="mo" class="header-weeks">Lun.</li>
+          <li id="tu" class="header-weeks">Mart.</li>
+          <li id="we" class="header-weeks">Mier.</li>
+          <li id="th" class="header-weeks">Jue.</li>
+          <li id="fr" class="header-weeks">Vier.</li>
+          <li id="sa" class="header-weeks">Sáb.</li>
 
-          <% date.forEach((element,index)=> { %>    
-            <li id="<%= element.week %>" class="calendar-format_item" data-bs-toggle="modal"
-              data-bs-target="#cellModal-<%= element.day %>">  
-              <%= element.day;%>
-             </li>
-             
+          <% date.forEach((element,index)=> { %>
+            <a href="/v1/calendar/<%= element.day %>" id="<%= element.week %>" class="calendar-format_item">
+              <li id="" >  
+                <%= element.day;%>
+               </li>
+            </a>    
           <%}) %>
         </ol>
       </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12 m-auto ">
+        <section class="container">
+          <h2 class="title">Lista de pendientes</h2>
+          <% if(list[0]){ %>    
+            <% list.forEach((element,index)=> { %>
+            <ul>
+              <li class="list">
+                <div class="card" style="width: 400px;">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= element.title %></h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Publicación del día <%= element.day %></h6>
+                    <p class="card-text"><%= element.description %></p>
+                    <a href="/v1/calendar/<%= element.day %>" class="card-link"> Ir a la fecha</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <% }) %>
+          <% }else{ %>
+            <h3 class="alert"> Parece que aún no has guardado notas, preciona la fecha y crea la primera! </h3>
+          <% } %>
+        </section>
+      </div>
+      
     </div>
   </section>
   

@@ -7,11 +7,10 @@
 }
 
 .calendar-format{
-  list-style: none;
+  margin: 20px auto;
   display: grid;
-  grid-template-columns: repeat(7,1fr);
-  grid-row-gap: 5px;
-  grid-column-gap: 5px;
+  grid-template-columns: repeat(7, 90px);
+  list-style: none;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -27,20 +26,51 @@
 
 .calendar-format_item{
   padding: 3px 5px;
-  width: 150px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   text-align: end;
-  border: solid var(--black) 2px;
-  border-radius: 2px;
   text-decoration: none;
   color: var(--black);
+  border: solid var(--black) 1px;
+}
+
+.form{
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-notes{
+  background-color: #c2c2c2;
+}
+
+.list{
+  display: flex;
+  padding: 10px;
+  list-style: none;
+  flex-direction: column;
+}
+.list-item{
+  text-align: center;
+  background-color: var(--white);
+}
+
+.especial{
+  list-style: none;
+  color: #70ff71;
 }
 
 .calendar-format_item:hover{
   border: solid var(--blue) 2px;
 } 
 .calendar-format_item:foc{
-  border: solid var(--yellow) 2px;
+  border: solid var(--yellow) 2px; 
 }
 
 /*Ubicaciones*/
@@ -66,4 +96,18 @@
 }
 #sa{
   grid-column-start: 7;
+}
+
+@media (max-width: 400px){
+  .header-weeks{
+    font-size: 14px;
+  }
+  .calendar-format{
+    grid-template-columns: repeat(7, 50px);
+    font-size: 12px;
+  }
+  .calendar-format_item{
+    width: 50px;
+    height: 50px;
+  }
 }

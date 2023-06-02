@@ -94,7 +94,7 @@ class CalendarService {
   }
 
   async delete (day,id) { 
-    const index  =this.days[day-1].notes.splice(id,1);  
+    const index = this.days[day-1].notes.splice(id,1);  
 		return day; 
 	}
 
@@ -103,7 +103,7 @@ class CalendarService {
 
 // Mes actual
 const actually = new Date();
-const date = new Date(actually.getFullYear(),actually.getMonth()+1,0)
+const week = new Date(actually.getFullYear(),actually.getMonth(),1);
+const date = new Date(actually.getFullYear(),actually.getMonth()+1,0);
 
-
-module.exports = {CalendarService, actually, date};
+module.exports = {CalendarService, actually, date, week};

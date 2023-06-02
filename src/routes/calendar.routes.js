@@ -5,13 +5,26 @@ const router = express.Router();
 const final = date.getDate();
 const today = actually.getDate();
 const month = actually.getMonth();
-const weekDay = actually.getDay();
+const weekDay = week.getDay();
+
 
 const service = new CalendarService(today, final, month, weekDay);
 
 router.get('/', async (req, res) => {
+  let list = [];
   const dates = await service.fullMonth();
-  res.render("index", { date: dates, month: dates[0].month});
+  dates.forEach((element,index) => {
+
+    if(!(element.notes[0] == undefined)){
+      list.push({ 
+        day: (index + 1),
+        id: element.notes[0].id,
+        title: element.notes[0].title, 
+        description: element.notes[0].description
+      });
+    }
+  });
+  res.render("index", { date: dates, month: dates[0].month, list: list});
 });
 
 router.get('/:day', async (req,res) =>{
@@ -27,8 +40,7 @@ router.get('/edit/:day/:id', async (req,res)=>{
   const note = await service.find(day,id);
   const info = data.notes;
   const edit = note;
-  res.render("note",{note: data, info: info, data: edit })
-
+  res.render("note",{note: data, info: info, data: edit });
 })
 
 router.post('/', async (req,res) => {
