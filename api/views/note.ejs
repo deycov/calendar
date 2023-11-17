@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Calendario 2023</title>
+</head>
+
+<body>
+  <h2 class="m-auto text-center"> Sus Notas </h2>
+  <div class="d-flex justify-content-center">
+    <a href="/v1/calendar" class="btn btn-outline-secondary "> Volver </a>
+  </div>
+  
+
+  <section class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h3  class="title-note"> Nota día <%= note.day %></h3>
+        <% if(data) { %>
+          <div class="form">
+            <form action="/v1/calendar/update/<%= note.day %>/<%= data.id %>" method="post">
+              <div class="form-control mb-3">
+                <label class="form-label">Título</label>
+                <input type="text" name="title" placeholder="<%= data.title %>" class="form-control">
+              </div>
+              <div class=" form-control mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea name="description" class="form-control" cols="30" rows="10" placeholder="<%= data.description %>"></textarea>
+              </div>
+              <button class="m-auto btn btn-outline-success"> Editar </button>
+            </form>
+          </div>
+          
+        <% }else{ %>
+          <div class="form">
+            <form action="/v1/calendar" method="post">
+              <input type="hidden" name="day" value="<%= note.day %>">
+              
+              <div class=" form-control mb-3">
+                <label class="form-label">Título</label>
+                <input type="text" name="title" placeholder="Titulo de la nota" class="form-control">
+              </div>
+              <div class=" form-control mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea name="description" class="form-control" cols="30" rows="10" placeholder="Descripción de la nota"></textarea>
+              </div>
+              <button class="btn btn-outline-light"> Guardar nota </button>
+            </form>
+          </div> 
+        <% } %>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <% if(info[0]) { %>
+          <div class="row">
+            <h3> Notas agregadas </h3>
+            <% info.forEach(el=>{ %>
+            <div class="col-sm-7 m-auto mb-3">
+              <div class="card" style="width: 300px;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= el.title %></h5>
+                  <p class="card-text"><%= el.description %></p>
+                  <a class="btn btn-outline-warning" href="/v1/calendar/edit/<%= note.day %>/<%= el.id %>"> Editar </a>
+                  <a class="btn btn-outline-danger" href="/v1/calendar/delete/<%= note.day %>/<%= el.id %>"> Eliminar </a>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        <% }else{ %>
+          <h3 class="alert text-center"> Registra una nota! </h3>
+        <% } %>
+      </div>
+    </div>
+  </section>
+  <script src="/js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
