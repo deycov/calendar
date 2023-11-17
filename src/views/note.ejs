@@ -14,7 +14,7 @@
 <body>
   <h2 class="m-auto text-center"> Sus Notas </h2>
   <div class="d-flex justify-content-center">
-    <a href="/v1/calendar" class="btn btn-secondary "> Volver </a>
+    <a href="/v1/calendar" class="btn btn-outline-secondary "> Volver </a>
   </div>
   
 
@@ -33,7 +33,7 @@
                 <label class="form-label">Descripción</label>
                 <textarea name="description" class="form-control" cols="30" rows="10" placeholder="<%= data.description %>"></textarea>
               </div>
-              <button class="m-auto btn btn-success"> Editar </button>
+              <button class="m-auto btn btn-outline-success"> Editar </button>
             </form>
           </div>
           
@@ -50,7 +50,7 @@
                 <label class="form-label">Descripción</label>
                 <textarea name="description" class="form-control" cols="30" rows="10" placeholder="Descripción de la nota"></textarea>
               </div>
-              <button class="btn btn-primary"> Guardar nota </button>
+              <button class="btn btn-outline-light"> Guardar nota </button>
             </form>
           </div> 
         <% } %>
@@ -65,8 +65,8 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= el.title %></h5>
                   <p class="card-text"><%= el.description %></p>
-                  <a class="btn btn-primary" href="/v1/calendar/edit/<%= note.day %>/<%= el.id %>"> Editar </a>
-                  <a class="btn btn-warning" href="/v1/calendar/delete/<%= note.day %>/<%= el.id %>"> Eliminar </a>
+                  <a class="btn btn-outline-warning" href="/v1/calendar/edit/<%= note.day %>/<%= el.id %>"> Editar </a>
+                  <a class="btn btn-outline-danger" href="/v1/calendar/delete/<%= note.day %>/<%= el.id %>"> Eliminar </a>
                 </div>
               </div>
             </div>

@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/deycov/pt-calendar#readme",
   "dependencies": {
+    "@hapi/boom": "^10.0.1",
     "body-parser": "^1.20.2",
+    "boom": "^7.3.0",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "joi": "^17.9.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
